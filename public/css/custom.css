@@ -1,0 +1,47 @@
+.table td.fit,
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+:-moz-placeholder {
+    font-style: italic;
+}
+
+::-moz-placeholder {
+    font-style: italic;
+}
+
+:-ms-input-placeholder {
+    font-style: italic;
+}
+
+.page-link:focus {
+    box-shadow: none!important;
+}
+
+input:focus,
+.form-control:focus {
+    outline: none!important;
+    box-shadow: none !important;
+    border-color: #c6c7c8 !important
+}
+
+.accordion-button {
+    background-color: unset!important;
+    box-shadow: unset!important;
+}
