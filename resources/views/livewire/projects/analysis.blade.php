@@ -24,7 +24,7 @@ new class extends Component
     public function analyze(): void
     {
         if ((Parameter::val('GEMINI_API') === 'true' && is_null(Parameter::val('GEMINI_API_KEY'))) ||
-            (Parameter::val('OPENai_API') === 'true' && (is_null(Parameter::val('OPENAI_API_KEY')) || is_null(Parameter::val('OPENAI_ORGANIZATION'))))) {
+            (Parameter::val('OPENAI_API') === 'true' && (is_null(Parameter::val('OPENAI_API_KEY')) || is_null(Parameter::val('OPENAI_ORGANIZATION'))))) {
             $this->redirectRoute('config.general');
         } else {
             Analysis::create([
