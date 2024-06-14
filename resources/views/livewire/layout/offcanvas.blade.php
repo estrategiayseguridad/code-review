@@ -67,7 +67,7 @@ new class extends Component
                 type="button"
                 class="btn btn-transparent link-secondary"
                 wire:click="retry">
-                    {{ __('Retry') }}
+                <i class="fa-solid fa-rotate-right pe-1"></i>{{ __('Retry') }}
             </button>
         </div>
         <x-table class="table-striped small">
