@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreignId('file_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('method');
             $table->string('name');
-            $table->string('description', 1000)->nullable();
+            $table->text('description')->nullable();
             $table->string('lines')->nullable();
             $table->string('severity')->nullable();
             $table->string('impact')->nullable();
