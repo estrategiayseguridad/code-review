@@ -68,7 +68,7 @@ class ProcessAnalysis implements ShouldQueue, ShouldBeEncrypted
                     )
                 )
                 ->generateContent(str_replace(":code", $code, $prompt));
-            $response = $response->text();
+            $response = str_replace(["```json", "```"], "", $response->text());
             Log::info("Gemini\n{$response}");
 
             $output_tokens = $client->geminiPro()->countTokens($response)->totalTokens;
@@ -94,7 +94,7 @@ class ProcessAnalysis implements ShouldQueue, ShouldBeEncrypted
                     ],
                 ],
             ]);
-            $response = $result->choices[0]->message->content;
+            $response = str_replace(["```json", "```"], "", $result->choices[0]->message->content);
             Log::info("OpenAI\n{$response}");
 
             $this->analysis->openai_tokens = ($this->analysis->openai_tokens ?? 0) + $result->usage->totalTokens;
