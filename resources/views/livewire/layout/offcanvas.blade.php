@@ -29,6 +29,11 @@ new class extends Component
         Artisan::call('queue:retry all');
     }
 
+    public function recall(): void
+    {
+        Artisan::call('queue:work --stop-when-empty');
+    }
+
 }; ?>
 
 <div class="offcanvas offcanvas-start {{ $open ? 'show' : '' }}" tabindex="-1" id="offcanvas" wire:poll.5s.visible='refreshData'>
@@ -38,7 +43,15 @@ new class extends Component
     </div>
     <div class="offcanvas-body">
 
-        <h4>En cola</h4>
+        <div class="d-flex justify-content-between align-items-center">
+            <h4>En cola</h4>
+            <button
+                type="button"
+                class="btn btn-transparent link-secondary"
+                wire:click="recall">
+                <i class="fa-solid fa-rotate-right pe-1"></i>{{ __('Retry') }}
+            </button>
+        </div>
         <x-table class="table-striped small mb-5">
             <x-slot:body>
                 @forelse($jobs as $job)
@@ -77,12 +90,11 @@ new class extends Component
                     <th scope="row" class="fit">
                         {{ $loop->iteration }}
                     </th>
-                    <td>{{ $job->uuid }}</td>
-                    <td>{{ $job->failed_at }}</td>
+                    <td>{{ $job->payload }}</td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="3">{{ __('No Content') }}</td>
+                    <td colspan="2">{{ __('No Content') }}</td>
                 </tr>
                 @endforelse
             </x-slot>

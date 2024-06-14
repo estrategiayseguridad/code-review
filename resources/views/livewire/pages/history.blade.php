@@ -60,16 +60,17 @@ new class extends Component
                     </x-slot>
                 </x-table>
                 {{ $pagination->links(data: ['scrollTo' => false]) }}
-                <div class="d-flex">
-                    <x-danger-button
-                        type="button"
-                        wire:click="truncate"
-                        wire:confirm="¿Desea continuar con la eliminación?">
-                            {{ __('Delete All') }}
-                    </x-danger-button>
-                </div>
             </x-slot>
         </x-card>
+        <div class="text-center">
+            <button
+                type="button"
+                class="btn btn-transparent link-danger"
+                wire:click="truncate"
+                wire:confirm="¿Desea continuar con la eliminación?">
+                {{ __('Delete All') }}
+            </button>
+        </div>
     </div>
 </div>
 
