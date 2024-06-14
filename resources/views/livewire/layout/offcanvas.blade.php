@@ -27,7 +27,6 @@ new class extends Component
     public function retry(): void
     {
         Artisan::call('queue:retry all');
-        Artisan::call('queue:work --stop-when-empty');
     }
 
 }; ?>
