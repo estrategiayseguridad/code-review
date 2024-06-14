@@ -24,6 +24,12 @@ new class extends Component
         $this->failed = FailedJob::orderByDesc('failed_at')->get();
     }
 
+    public function retry(): void
+    {
+        Artisan::call('queue:retry all');
+        Artisan::call('queue:work --stop-when-empty');
+    }
+
 }; ?>
 
 <div class="offcanvas offcanvas-start {{ $open ? 'show' : '' }}" tabindex="-1" id="offcanvas" wire:poll.5s.visible='refreshData'>
@@ -56,7 +62,15 @@ new class extends Component
             </x-slot>
         </x-table>
 
-        <h4>Fallidas</h4>
+        <div class="d-flex justify-content-between align-items-center">
+            <h4>Fallidas</h4>
+            <button
+                type="button"
+                class="btn btn-transparent link-secondary"
+                wire:click="retry">
+                    {{ __('Retry') }}
+            </button>
+        </div>
         <x-table class="table-striped small">
             <x-slot:body>
                 @forelse($failed as $job)
