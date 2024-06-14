@@ -50,7 +50,7 @@ new class extends Component
                         <span class="small opacity-50">{{ $job->file->project->name }}</span>
                         <span>{{ basename($job->file->path) }}</span>
                         <span class="small opacity-50">{{ $job->file->path }}</span>
-                        <span class="small opacity-50">{{ $job->available_at }}</span>
+                        <span class="small opacity-50">{{ 'disponible: ' . $job->available_at }}</span>
                     </td>
                 </tr>
                 @empty
